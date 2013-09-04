@@ -1,0 +1,45 @@
+#include <winver.h>
+
+#include "../src/config.h"
+#include "resource.h"
+
+1 VERSIONINFO
+FILEVERSION    VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, 0
+PRODUCTVERSION VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, 0
+FILEFLAGSMASK VS_FF_DEBUG | VS_FF_PATCHED | VS_FF_PRERELEASE
+FILEFLAGS 0
+#ifndef NDEBUG
+	| VS_FF_DEBUG
+#endif
+#if VER_PATCH
+	| VS_FF_PATCHED
+#endif
+#if !VER_MAJOR
+	| VS_FF_PRERELEASE
+#endif
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+FILESUBTYPE 0
+{
+	BLOCK "StringFileInfo"
+	{
+		BLOCK "10090000"
+		{
+			VALUE "CompanyName",      STRINGIZE(AUTHOR)
+			VALUE "FileDescription",  STRINGIZE(SUBTITLE)
+			VALUE "FileVersion",      STRINGIZE(VERSION)
+			VALUE "InternalName",     STRINGIZE(NAME)
+			VALUE "LegalCopyright",   STRINGIZE(COPYRIGHT)
+			VALUE "OriginalFilename", STRINGIZE(PACKAGE.exe)
+			VALUE "ProductName",      STRINGIZE(NAME)
+			VALUE "ProductVersion",   STRINGIZE(VERSION)
+		}
+	}
+	BLOCK "VarFileInfo"
+	{
+		VALUE "Translation", 0x1009, 0
+	}
+}
+
+IDR_MANIFEST MANIFEST STRINGIZE(exe.manifest)
+IDI_ICON     ICON     STRINGIZE(icon.ico)

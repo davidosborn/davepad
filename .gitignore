@@ -1,0 +1,4 @@
+codepad.exe
+res/resource.res
+src/*.d
+src/*.o
